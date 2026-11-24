@@ -30,8 +30,8 @@ document.querySelectorAll('.device-stage').forEach(stage=>{
   if(Math.hypot(dx,dy)>4)suppressClick=true;
   yaw=drag.yaw+dx*.65;pitch=Math.max(-45,Math.min(45,drag.pitch-dy*.3));paint();
  });
- function finish(event){if(!drag||drag.id!==event.pointerId)return;drag=null;stage.classList.remove('is-dragging');if(stage.hasPointerCapture(event.pointerId))stage.releasePointerCapture(event.pointerId);}
- stage.addEventListener('pointerup',finish);stage.addEventListener('pointercancel',finish);stage.addEventListener('lostpointercapture',()=>{drag=null;stage.classList.remove('is-dragging');});
+ function finish(event){if(!drag||drag.id!==event.pointerId)return;if(event.type==='pointercancel')suppressClick=false;drag=null;stage.classList.remove('is-dragging');if(stage.hasPointerCapture(event.pointerId))stage.releasePointerCapture(event.pointerId);}
+ stage.addEventListener('pointerup',finish);stage.addEventListener('pointercancel',finish);stage.addEventListener('lostpointercapture',()=>{if(drag)suppressClick=false;drag=null;stage.classList.remove('is-dragging');});
  stage.addEventListener('click',event=>{if(suppressClick){event.preventDefault();event.stopPropagation();suppressClick=false;}},true);
  grip.addEventListener('click',reset);
  grip.addEventListener('keydown',event=>{
