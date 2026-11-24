@@ -124,10 +124,72 @@ $('#sticker-tray').addEventListener('click',e=>{
  const b=e.target.closest('[data-choice]');if(!b)return;
  selectedSticker=Number(b.dataset.choice);$$('[data-choice]').forEach(el=>el.setAttribute('aria-pressed',String(el===b)));
 });
-$('#send-sticker').addEventListener('click',()=>{
- const el=document.createElement('div');el.className='standalone-sticker own';el.innerHTML=mascot(selectedSticker,`role="img" aria-label="${names[selectedSticker]}"`)+'<span>방금</span>';
- const log=$('#conversation-log');log.append(el);if(log.querySelectorAll('.standalone-sticker').length>8)log.querySelector('.standalone-sticker').remove();
- decorate(el);log.scrollTop=log.scrollHeight;announce(`${names[selectedSticker]} 스티커를 표시했어요.`);
+// Local conversation choreography; no account, AI call, or remote message is sent.
+const replyBook=[
+ ['좋아, 이 기세로 한 문제만 더!','응원 받았으니 나도 다시 간다 ㅎㅎ','우리 오늘 계획까지만 깔끔하게 끝내자.'],
+ ['오 불붙었다ㅋㅋ 나도 폰 내려놓고 간다.','그 열정 조금만 나눠줘. 난 아직 첫 문제야.','좋아, 지금 집중해서 쉬는 시간 벌자.'],
+ ['오 공부 모드네. 나도 옆에서 영어 좀 할게.','다음 페이지까지 하고 같이 쉬자.','집중하는 거 보고 나도 책 폈다.'],
+ ['책상에 볼 붙었네ㅋㅋ 잠깐 쉬고 와.','졸릴 땐 한 번 일어나서 물 마시자.','10분만 눈 쉬고 다시 만나자.'],
+ ['오늘 할 거 다 끝냈어? 깃발 꽂을 만하네!','정상 먼저 갔네ㅋㅋ 나도 곧 따라갈게.','오늘도 하나 넘겼다. 이 맛에 체크하지.'],
+ ['집중 잘 되는 노래 찾았어? 이따 추천해줘.','그럼 나는 조용히 국어 한 지문만 더.','헤드폰 꼈으면 말 안 걸게. 끝나고 보자!'],
+ ['차 식기 전에 마셔ㅋㅋ 쉬는 것도 계획이야.','나도 물 떠올게. 잠깐만 쉬자.','좋아, 이 한 잔 마시고 다시 한 세트.'],
+ ['기지개 보고 나도 일어났다ㅋㅋ','허리 펴고 기지개 한 번. 오래 앉아 있었네.','딱 스트레칭 필요했는데. 같이 하고 다시 가자.'],
+ ['막힌 문제야? 번호 남겨줘. 나도 한번 볼게.','일단 표시해 두자. 한 문제에 오늘 다 쓰진 말고.','나도 방금 막혔어ㅋㅋ 풀이 같이 비교해보자.'],
+ ['표정 보니까 오늘 공부 잘됐나 보다.','그 뿌듯함 알지. 나도 마무리하고 싶다.','좋네ㅎㅎ 오늘 잘한 거 하나는 꼭 기억해두자.'],
+ ['체크 늘어난 거 봐. 오늘 꽤 했는데?','계획 다 끝내면 알려줘. 같이 박수 쳐줄게.','나도 하나 지웠다. 남은 거 차근차근 가자.'],
+ ['책 탑이 제법인데? 한 권씩만 가보자.','오늘도 쌓는 중이네. 나도 내 몫 하고 갈게.','그중 제일 얇은 거부터 끝내고 오자ㅋㅋ'],
+ ['어제보다 쌓인 게 보이니까 괜히 힘난다.','그래프 올라가는 거 보고 나도 의욕 생김.','하루하루는 비슷했는데 모아보니 꽤 했네.'],
+ ['뭐야, 드디어 풀렸어? 그 표정인데ㅋㅋ','오 뭐 발견했어? 나도 궁금하다.','답지 보기 전에 알아낸 거면 진짜 뿌듯하겠다.'],
+ ['울 정도로 감동했냐고ㅋㅋ 오늘 수고했어.','왜 그래, 무슨 일 있어? 얘기해도 돼.','이거 기쁜 눈물이지? 같이 좋아해도 되는 거지?'],
+ ['인강 듣는 중? 나도 한 강만 더 들으려고.','창 여러 개 켜지 말고 하나씩ㅋㅋ 같이 집중하자.','정리 끝나면 쉬러 와. 난 여기서 문제 풀고 있을게.'],
+ ['벌써 그만큼 했어? 시간 진짜 빨리 가네.','한 세트 끝났나 보다. 물 한 잔 하고 오자.','나도 타이머 켰다. 다음 쉬는 시간에 보자.'],
+ ['아직 있네. 오늘은 어디까지 하고 잘 거야?','나도 마지막 정리 중. 끝나면 푹 쉬자.','밤 늦었다. 내일 볼 몫도 조금 남겨두자.'],
+ ['끝냈구나! 마지막 체크까지 깔끔하다.','이건 자랑할 만하지ㅋㅋ 오늘 수고했어.','채점까지 끝내면 진짜 퇴근 인정.'],
+ ['그 표정은 질문 있다는 건데ㅋㅋ 뭔데?','고민 중이면 말해봐. 같이 생각해보자.','뭐부터 할지 고민돼? 제일 작은 거 하나부터 가자.'],
+ ['중요한 날 표시했네. 우리 그때까지 차근차근.','일정 까먹을 뻔했다. 나도 달력 볼게.','표시해 두면 마음이 좀 놓이지. 오늘 몫부터 하자.'],
+ ['오늘 많이 지쳤나 보다. 잠깐 내려놓고 쉬자.','그럴 날도 있지. 물 마시고 숨 좀 돌려.','여기까지 온 것도 수고했어. 오늘은 네 속도로.'],
+ ['오 자신감 돌아왔다ㅋㅋ 그 기세 좋다.','표정 든든한데? 나까지 힘난다.','오늘 감 잡았네. 이 느낌 하나만 기억해두자.'],
+ ['담요까지 챙겼네ㅋㅋ 쉬고 와, 난 조금만 더.','제일 편해 보인다. 충전하고 돌아와.','쉬는 시간 제대로 보내는 중이네. 따뜻하게 있어.'],
+ ['하트 잘 받았다ㅎㅎ 나도 응원하고 있어.','갑자기 힘나네. 우리 오늘도 끝까지 같이 가자.','고맙다. 나도 마음으로 하트 하나 보냈어.']
+];
+const chatFriends=[{name:'박지민',sticker:22},{name:'김서연',sticker:5},{name:'최도윤',sticker:6}];
+const replyUses=Array(25).fill(0),replyQueue=[];
+let replying=false;
+const chatLog=$('#conversation-log'),sendSticker=$('#send-sticker');
+function appendChat(node,force=false){
+ const follow=force||chatLog.scrollHeight-chatLog.scrollTop-chatLog.clientHeight<55;
+ node.dataset.dynamic='true';chatLog.append(node);
+ const old=chatLog.querySelectorAll(':scope > [data-dynamic]');if(old.length>30)old[0].remove();
+ decorate(node);if(follow)chatLog.scrollTop=chatLog.scrollHeight;
+}
+function replyElement(friend){
+ const node=document.createElement('div');node.className='friend-message';
+ const avatar=document.createElement('span');avatar.className='mascot chat-avatar';avatar.dataset.sticker=String(friend.sticker);avatar.setAttribute('aria-hidden','true');
+ const content=document.createElement('div'),name=document.createElement('span');name.className='chat-name';name.textContent=friend.name;content.append(name);node.append(avatar,content);return {node,content};
+}
+function runReplyQueue(){
+ if(replying||!replyQueue.length)return;
+ replying=true;const reply=replyQueue.shift();sendSticker.disabled=replyQueue.length>=8;
+ setTimeout(()=>{
+  const {node,content}=replyElement(reply.friend);node.dataset.replyFor=String(reply.sticker);node.dataset.replyVariant=String(reply.variant);node.classList.add('is-typing');node.setAttribute('aria-hidden','true');
+  const bubble=document.createElement('div');bubble.className='chat-bubble typing-dots';bubble.innerHTML='<i></i><i></i><i></i>';content.append(bubble);appendChat(node);
+  setTimeout(()=>{
+   const follow=chatLog.scrollHeight-chatLog.scrollTop-chatLog.clientHeight<55;
+   node.classList.remove('is-typing');node.removeAttribute('aria-hidden');
+   const text=document.createElement('p');text.className='chat-bubble';text.textContent=reply.text;bubble.replaceWith(text);
+   const time=document.createElement('time');time.textContent='방금';content.append(time);
+   if(follow)chatLog.scrollTop=chatLog.scrollHeight;
+   if(!$('.phone-chat-view').hidden)announce(`${reply.friend.name}: ${reply.text}`);
+   replying=false;runReplyQueue();
+  },850+Math.min(reply.text.length*8,300));
+ },320);
+}
+sendSticker.addEventListener('click',()=>{
+ if(replyQueue.length>=8)return;
+ const sticker=selectedSticker,use=replyUses[sticker]++,friend=chatFriends[(sticker+use)%chatFriends.length];
+ const el=document.createElement('div');el.className='standalone-sticker own';el.innerHTML=mascot(sticker,`role="img" aria-label="${names[sticker]}"`)+'<span>방금</span>';
+ appendChat(el,true);announce(`${names[sticker]} 스티커를 보냈어요.`);
+ replyQueue.push({friend,text:replyBook[sticker][use%3],sticker,variant:use%3});sendSticker.disabled=replyQueue.length>=8;runReplyQueue();
 });
 const menu=$('#menu-toggle'),nav=$('#site-nav');
 function closeMenu(){menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','메뉴 열기');nav.classList.remove('open');}
