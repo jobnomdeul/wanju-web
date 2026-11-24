@@ -60,7 +60,7 @@ function profileMarkup(){
  return `<div class="demo-heading"><h3>내 프로필</h3><button type="button" class="icon-button" data-switch="record" aria-label="기록으로 돌아가기"><span data-icon="back" aria-hidden="true"></span></button></div>
  <div class="profile-flipper" aria-label="개인·공개 프로필 카드" role="group">
  <div class="profile-rotor ${profilePublic?'is-public':''}">
- ${[{public:false,title:'개인 프로필',name:'나의 완주',sticker:0,scope:'이 기기에서 나만 보는 이름과 표정'},{public:true,title:'공개 프로필',name:'노란 배낭',sticker:24,scope:'파티 · 커뮤니티에 표시'}].map(p=>`<div class="profile-face ${p.public?'profile-back':''}" data-profile-face="${p.public}" aria-hidden="${p.public!==profilePublic}" ${p.public!==profilePublic?'inert':''}><div class="profile-face-label"><span>${p.title}</span><span data-icon="swipe" aria-hidden="true"></span></div><div class="profile-person">${mascot(p.sticker)}<strong>${p.name}</strong></div><p>${p.scope}</p></div>`).join('')}
+ ${[{public:false,title:'개인 프로필',name:'나의 완주',sticker:0},{public:true,title:'공개 프로필',name:'노란 배낭',sticker:24}].map(p=>`<div class="profile-face ${p.public?'profile-back':''}" data-profile-face="${p.public}" aria-hidden="${p.public!==profilePublic}" ${p.public!==profilePublic?'inert':''}><div class="profile-face-label"><span>${p.title}</span><span data-icon="swipe" aria-hidden="true"></span></div><div class="profile-person">${mascot(p.sticker)}<strong>${p.name}</strong></div></div>`).join('')}
  </div></div>
  <div class="profile-choice" role="group" aria-label="프로필 전환"><button type="button" data-profile-side="personal" aria-pressed="${!profilePublic}">개인</button><button type="button" data-profile-side="public" aria-pressed="${profilePublic}">공개</button></div>`;
 }

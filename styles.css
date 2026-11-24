@@ -105,13 +105,13 @@ svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke
 .profile-flipper{perspective:900px;touch-action:pan-y;margin-top:24px}
 .profile-rotor{display:grid;transform-style:preserve-3d;transition:transform .38s cubic-bezier(.65,0,.35,1)}
 .profile-rotor.is-public{transform:rotateY(180deg)}
-.profile-face{grid-area:1/1;min-height:250px;border-radius:28px;background:var(--cream);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.profile-face{grid-area:1/1;min-height:200px;border-radius:28px;background:var(--cream);padding:22px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .profile-back{transform:rotateY(180deg);background:var(--peach)}
 .profile-face[aria-hidden=true]{pointer-events:none}
 .profile-face-label{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:.875rem}
 .profile-face-label>[data-icon]{display:flex}.profile-face-label svg{width:20px;height:20px}
 .profile-person{display:flex;align-items:center;gap:16px}.profile-person .mascot{width:72px;height:72px}
-.profile-person strong{font-size:1.375rem;min-width:0}.profile-face p{font-size:.875rem}
+.profile-person strong{font-size:1.375rem;min-width:0}
 .profile-choice{display:flex;gap:4px;background:var(--cream);padding:4px;border-radius:22px;margin-top:14px}
 .profile-choice button{flex:1;min-height:48px;border-radius:18px;padding:10px 14px}
 .profile-choice button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
