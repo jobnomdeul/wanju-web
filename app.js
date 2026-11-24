@@ -16,6 +16,7 @@ Object.assign(paths,{
 });
 function decorate(root=document){
  root.querySelectorAll('[data-sticker]').forEach(el=>{const n=Number(el.dataset.sticker);el.style.backgroundPosition=`${n%5*25}% ${Math.floor(n/5)*25}%`;});
+ window.WanjuMotion?.decorate(root);
  root.querySelectorAll('[data-icon]').forEach(el=>{el.innerHTML=`<svg viewBox="0 0 24 24" aria-hidden="true">${paths[el.dataset.icon]||''}</svg>`;});
 }
 const announce=text=>{$('#website-status').textContent=text;};

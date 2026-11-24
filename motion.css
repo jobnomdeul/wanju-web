@@ -1,0 +1,59 @@
+/* Original sticker artwork, layered motion. All distances use the 250.8-unit atlas cell. */
+.mascot[data-motion-ready]{position:relative;background-image:none;clip-path:none;isolation:isolate;contain:paint}
+.mascot .motion-art{display:block;width:100%;height:100%;fill:none;stroke:none;stroke-width:0;overflow:hidden;pointer-events:none;transform:translateZ(0)}
+.mascot:not(.motion-detailed) .pose-puppet{filter:none}
+.motion-art g,.motion-art path{transform-box:view-box;transform-origin:125px 225px}
+.motion-base{animation:mascot-breathe 3.8s ease-in-out infinite}
+.motion-base[mask]{animation:none}
+.motion-cheer{animation:mascot-cheer 2.6s ease-in-out infinite}
+.motion-rays,.motion-date-rays,.motion-clock-tick{animation:mascot-flash 2.6s ease-in-out infinite}
+.motion-resolve{animation:mascot-resolve 2.1s ease-in-out infinite}
+.motion-sleep,.motion-blanket{animation:mascot-breathe 4.5s ease-in-out infinite}
+.motion-sleep-z{animation:mascot-drift 3.6s ease-in-out infinite}
+.motion-flag{animation:mascot-flag 2.5s ease-in-out infinite}
+.motion-music{animation:mascot-sway 2s ease-in-out infinite}
+.motion-notes{animation:mascot-drift 2.8s ease-in-out infinite}
+.motion-steam{animation:mascot-steam 3.6s ease-out infinite}
+.motion-stretch{animation:mascot-stretch 4.8s ease-in-out infinite}
+.motion-puzzle{animation:mascot-think 3.4s ease-in-out infinite}
+.motion-scribble,.motion-tired-cloud{animation:mascot-wiggle 3s ease-in-out infinite}
+.motion-sweat{animation:mascot-drop 3.4s ease-in-out infinite}
+.motion-sparkles,.motion-check-glint,.motion-night-stars,.motion-pass-spark,.motion-confidence-star{animation:mascot-twinkle 3.2s ease-in-out infinite}
+.motion-checklist,.motion-proud{animation:mascot-nod 3.8s ease-in-out infinite}
+.motion-book-hug{animation:mascot-hug 4s ease-in-out infinite}
+.motion-surprise{animation:mascot-surprise 3.8s ease-in-out infinite}
+.motion-surprise-mark{animation:mascot-mark 3.8s ease-in-out infinite}
+.motion-happy-cry{animation:mascot-hug 3.6s ease-in-out infinite}
+.motion-teardrop{animation:mascot-drop 2.8s ease-in infinite}
+.motion-typing{animation:mascot-type 1s ease-in-out infinite}
+.motion-screen-light{animation:mascot-flash 2.2s ease-in-out infinite}
+.motion-thinking{animation:mascot-think 4s ease-in-out infinite}
+.motion-tired{animation:mascot-tired 5s ease-in-out infinite}
+.motion-confidence{animation:mascot-stretch 4s ease-in-out infinite}
+.motion-heart-hug{animation:mascot-hug 3.5s ease-in-out infinite}
+.motion-hearts{animation:mascot-hearts 3.5s ease-in-out infinite}
+.writing-marks path{stroke-dasharray:30;stroke-dashoffset:30;animation:mascot-ink 4.8s linear infinite}
+.writing-marks .writing-mark-two{animation-delay:.85s}
+@keyframes mascot-ink{0%,8%{stroke-dashoffset:30;opacity:0}15%{opacity:.65}64%,82%{stroke-dashoffset:0;opacity:.65}98%,100%{stroke-dashoffset:0;opacity:0}}
+@keyframes mascot-breathe{50%{transform:translateY(-1.5px) scaleY(1.008)}}
+@keyframes mascot-cheer{0%,65%,100%{transform:none}20%{transform:translateY(-4px) rotate(-2deg)}35%{transform:translateY(0) rotate(1deg)}48%{transform:translateY(-2px)}}
+@keyframes mascot-flash{0%,100%{opacity:1}45%{opacity:.35}}
+@keyframes mascot-resolve{50%{transform:translateY(-2px) scale(1.012)}}
+@keyframes mascot-drift{0%,100%{transform:none;opacity:1}65%{transform:translate(2px,-5px);opacity:.6}}
+@keyframes mascot-flag{50%{transform:skewY(-3deg) scaleX(.96)}}
+@keyframes mascot-sway{25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+@keyframes mascot-steam{0%{transform:translateY(4px);opacity:0}25%{opacity:.45}100%{transform:translate(-3px,-12px);opacity:0}}
+@keyframes mascot-stretch{40%,60%{transform:scaleY(1.025) translateY(-1px)}}
+@keyframes mascot-think{30%{transform:rotate(-1.4deg)}65%{transform:rotate(1deg)}}
+@keyframes mascot-wiggle{20%,60%{transform:rotate(-3deg)}40%,80%{transform:rotate(3deg)}}
+@keyframes mascot-drop{0%,15%{opacity:0;transform:translateY(-2px)}35%{opacity:.8}80%,100%{opacity:0;transform:translateY(8px)}}
+@keyframes mascot-twinkle{0%,100%{opacity:.9}45%{opacity:.3}65%{opacity:1}}
+@keyframes mascot-nod{30%{transform:translateY(2px) rotate(1deg)}50%{transform:translateY(-1px)}}
+@keyframes mascot-hug{45%,60%{transform:scaleX(.985) scaleY(1.015)}}
+@keyframes mascot-surprise{12%{transform:translateY(-3px) scale(1.02)}25%,100%{transform:none}}
+@keyframes mascot-mark{12%{transform:translateY(-4px) rotate(5deg)}25%,100%{transform:none}}
+@keyframes mascot-type{25%{transform:translateY(1px) rotate(.4deg)}75%{transform:translateY(-1px) rotate(-.4deg)}}
+@keyframes mascot-tired{50%{transform:scaleY(.985) translateY(2px)}}
+@keyframes mascot-hearts{50%{transform:translateY(-4px) scale(1.02);opacity:.7}}
+.mascot:not(.is-animated) .motion-art *,.motion-paused .motion-art *{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.mascot[data-motion-ready]{background-image:var(--sticker-sheet);background-size:500%;background-repeat:no-repeat;clip-path:inset(4% 0 0 round 14px)}.mascot .motion-art{display:none}.motion-art *{animation:none!important}}
