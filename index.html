@@ -21,10 +21,10 @@
 <h1 id="hero-heading">너의 속도로,<br>끝까지.</h1><p class="hero-description">수능까지 남은 시간부터 오늘의 공부까지.<br>작은 한 걸음을 완주와 함께.</p>
 <div class="hero-actions"><a class="button primary" href="#experience">앱 둘러보기</a><a class="button secondary" href="#availability">이용 안내</a></div>
 <p class="platform-note">iOS · Android <span aria-hidden="true">/</span> 초대형 테스트 중</p></div>
-<div class="hero-art"><div class="hero-phone" aria-label="완주 오늘 화면 가상 예시">
+<div class="hero-art"><div class="hero-phone" aria-label="완주 오늘 화면 미리보기">
 <div class="phone-status" aria-hidden="true"><span>9:41</span><span>▰</span></div><div class="hero-phone-content">
-<div class="app-wordmark"><img src="./assets/logo.webp" width="28" height="28" alt="">완주<span class="sample-badge">가상 화면</span></div>
-<div class="phone-journey"><div class="phone-journey-label">수능까지 남은 시간 <span>예시 여정</span></div>
+<div class="app-wordmark"><img src="./assets/logo.webp" width="28" height="28" alt="">완주</div>
+<div class="phone-journey"><div class="phone-journey-label">수능까지 남은 시간 <span>365일 체험</span></div>
 <div class="phone-counter" data-live-counter aria-hidden="true"><b>44.</b><span>0000000000</span><small>%</small></div>
 <div class="phone-counter-actions"><button type="button" class="counter-pause icon-button" aria-pressed="false" aria-label="숫자 표시 멈춤" title="숫자 표시 멈춤"><span data-icon="pause" aria-hidden="true"></span></button><button type="button" id="read-counter" class="icon-button" aria-label="현재 값 읽기" title="현재 값 읽기"><span data-icon="volume" aria-hidden="true"></span></button></div>
 <div class="journey-line"><span></span></div><div class="journey-labels"><span>출발</span><span>6월 모평</span><span>8월 모평</span><span>수능</span></div></div>
@@ -41,7 +41,7 @@
 <button type="button" id="reduce-transparency" class="subtle-button" aria-pressed="false">투명 효과 줄이기</button></div>
 <div class="demo-stage"><div class="demo-phone"><div class="phone-status" aria-hidden="true"><span>9:41</span><span>▰</span></div>
 <div id="demo-panel" class="demo-panel" role="tabpanel" aria-labelledby="tab-today" tabindex="0"></div>
-<div class="demo-tab-list demo-bottom-nav" role="tablist" aria-label="완주 가상 화면 선택">
+<div class="demo-tab-list demo-bottom-nav" role="tablist" aria-label="완주 화면 선택">
 <button id="tab-today" type="button" role="tab" aria-selected="true" aria-controls="demo-panel" tabindex="0" data-demo="today"><span data-icon="sun" aria-hidden="true"></span><strong>오늘</strong></button>
 <button id="tab-plan" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-demo="plan"><span data-icon="calendar" aria-hidden="true"></span><strong>계획</strong></button>
 <button id="tab-focus" type="button" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-demo="focus"><span data-icon="play" aria-hidden="true"></span><strong>집중</strong></button>
@@ -51,17 +51,17 @@
 
 <section class="time-section container" aria-labelledby="time-heading"><div class="time-art"><span class="mascot" data-sticker="4" aria-hidden="true"></span></div>
 <div class="time-copy"><span class="eyebrow">조금씩, 끝을 향해</span><h2 id="time-heading">숫자로 만나는<br>나의 여정.</h2><p>날짜를 움직여 남은 비율을 확인해보세요.</p>
-<div class="day-slider"><label for="journey-day">365일 예시 여정 <strong><span id="day-number">204</span>일째</strong></label><input id="journey-day" type="range" min="0" max="365" value="204" step="1" aria-describedby="slider-help"><div class="slider-endpoints"><span>출발</span><span>완주</span></div>
+<div class="day-slider"><label for="journey-day">365일 체험 여정 <strong><span id="day-number">204</span>일째</strong></label><input id="journey-day" type="range" min="0" max="365" value="204" step="1" aria-describedby="slider-help"><div class="slider-endpoints"><span>출발</span><span>완주</span></div>
 <div class="inline-counter" data-live-counter aria-hidden="true"><b>44.</b><span>0000000000</span><small>% 남음</small></div><button class="counter-pause subtle-button" type="button" aria-pressed="false">숫자 표시 멈춤</button></div>
 <details class="detail-note"><summary>비율은 어떻게 계산하나요?<span class="faq-plus" aria-hidden="true"></span></summary><p id="slider-help">앱은 전년도 수능 다음 날부터 목표 수능까지의 남은 시간 비율을 보여줍니다. 학습 완성도나 합격 가능성을 뜻하지 않아요. 여기서는 공식 시험일 대신 365일 가상 여정을 사용합니다. 날짜를 움직이면 위 홈 화면의 숫자도 함께 바뀝니다.</p></details></div></section>
 
 <section class="lock-section container" id="lockscreen" aria-labelledby="lock-heading"><div class="lock-copy"><span class="eyebrow">화면 밖에서도</span><h2 id="lock-heading">지금의 집중을,<br>잠금화면에.</h2><p>앱을 열지 않고 공부 시간을 확인해요.<br>과목을 숨기는 것도 내 선택.</p>
 <details class="detail-note"><summary>지원 기기와 표시 안내<span class="faq-plus" aria-hidden="true"></span></summary><p>iPhone은 Live Activity·Dynamic Island, Android는 공부 타이머 알림을 사용합니다. 기본은 꺼져 있으며 앱 설정에서 직접 켤 수 있어요. 기기·OS·알림 설정에 따라 표시가 달라집니다. 저장 전 시간은 잠정값이며 연중 상시 수능 위젯과는 다른 기능입니다.</p></details></div>
-<div class="lock-preview" aria-label="잠금화면 공부 카드 가상 예시"><div class="lock-clock" aria-hidden="true">09:41</div><p class="lock-day">오늘도, 너의 속도로.</p><div class="live-card"><div class="live-card-top"><img src="./assets/logo.webp" width="28" height="28" alt=""><strong>완주</strong><span>공부 중</span></div><div class="live-card-content"><span class="mascot" data-sticker="2" aria-hidden="true"></span><div><span id="lock-subject">나의 집중 시간</span><strong>00:25:08</strong><small>진행 중 · 잠정 시간</small></div></div></div><div class="lock-controls"><button type="button" id="lock-privacy" aria-pressed="true">과목 표시 켜기</button><span>가상 예시 · 실제 기기 알림 아님</span></div></div></section>
+<div class="lock-preview" aria-label="잠금화면 공부 카드 미리보기"><div class="lock-clock" aria-hidden="true">09:41</div><p class="lock-day">오늘도, 너의 속도로.</p><div class="live-card"><div class="live-card-top"><img src="./assets/logo.webp" width="28" height="28" alt=""><strong>완주</strong><span>공부 중</span></div><div class="live-card-content"><span class="mascot" data-sticker="2" aria-hidden="true"></span><div><span id="lock-subject">나의 집중 시간</span><strong>00:25:08</strong><small>진행 중 · 잠정 시간</small></div></div></div><div class="lock-controls"><button type="button" id="lock-privacy" aria-pressed="true">과목 표시 켜기</button><span>잠금화면 미리보기</span></div></div></section>
 
 <section class="together-section" id="together" aria-labelledby="together-heading"><div class="container together-grid">
 <div><span class="eyebrow">함께하는 하루</span><h2 id="together-heading">말 대신,<br>응원 한 조각.</h2><p>25개의 완주 표정.<br>아래 띠에서 골라 마음을 보내보세요.</p><span class="mascot together-mascot" data-sticker="24" aria-hidden="true"></span></div>
-<div class="conversation-card"><div class="conversation-top"><span class="tab-icon" data-icon="users" aria-hidden="true"></span><div><strong>노란 배낭 파티</strong><span>가상 대화</span></div></div>
+<div class="conversation-card"><div class="conversation-top"><span class="tab-icon" data-icon="users" aria-hidden="true"></span><div><strong>노란 배낭 파티</strong><span>응원 주고받기</span></div></div>
 <div class="conversation-log" id="conversation-log" aria-label="가상 파티 대화"><span class="chat-name">조금씩 매일</span><p class="chat-bubble">오늘은 25분부터 시작하려고!</p><p class="chat-bubble own">같이 해보자.</p><div class="standalone-sticker own"><span class="mascot" data-sticker="0" role="img" aria-label="주먹 들고 응원"></span><span>오후 2:04</span></div></div>
 <div class="sticker-tray-header"><span>완주의 표정</span><button id="send-sticker" type="button">응원 보내기</button></div><p class="sticker-help" id="sticker-help">옆으로 넘겨 표정을 골라보세요.</p><div id="sticker-tray" aria-describedby="sticker-help" class="sticker-tray" aria-label="응원 이모티콘 선택"></div><span class="conversation-note">이 페이지에서만 표시되며 외부로 전송되지 않아요.</span></div></div></section>
 
