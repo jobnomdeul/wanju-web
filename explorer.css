@@ -1,0 +1,36 @@
+/* UX13 · one persistent device, a story selected by the person exploring it. */
+.single-phone-site{--scene-bg:#fbf8ef;--scene-glow:#f0ddb0;background:var(--scene-bg)}
+.site-atmosphere{position:fixed;inset:0;z-index:-1;pointer-events:none;background-color:var(--scene-bg);transition:background-color .6s ease}
+.site-atmosphere:before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 76% 50%,var(--scene-glow),transparent 58%);opacity:.6;transition:background .6s}
+.single-phone-site .scene{background:transparent}.single-phone-site .scene-inner{position:relative;z-index:1}
+.persistent-phone{position:fixed;right:max(34px,calc((100vw - 1120px)/2));top:50%;transform:translateY(-50%);width:min(450px,calc(50vw - 60px));z-index:10;--device-width:330px}
+.single-phone-site .persistent-phone .device{--device-width:330px}
+.phone-app-view,.phone-chat-view{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
+.phone-lock-view{position:absolute;inset:0;padding-top:49px;display:flex;flex-direction:column;isolation:isolate}
+.phone-app-view[hidden],.phone-chat-view[hidden],.phone-lock-view[hidden]{display:none}
+.persistent-phone .device-status{position:relative;z-index:3}.persistent-phone .demo-bottom-nav{bottom:15px}
+.persistent-phone .device-screen:after{content:'';position:absolute;left:0;right:0;bottom:0;height:16px;background:var(--paper);z-index:4;pointer-events:none}.persistent-phone.lock-device .device-screen:after{background:transparent}
+.persistent-phone .phone-app-view .demo-panel{padding-bottom:108px}.persistent-phone .device-shadow{display:none}
+.single-phone-site .lock-copy .quiet-label,.single-phone-site .quiet-label{font-size:11px}
+.persistent-phone .phone-lock-view .live-card{display:block;text-align:left;font-family:inherit;cursor:pointer}.persistent-phone .phone-lock-view .live-card>p{display:flex}
+.persistent-phone .phone-chat-view .conversation-top{padding-left:8px;gap:6px}.chat-back{flex-shrink:0;width:34px;height:44px}.chat-back svg{width:18px}.persistent-phone .phone-chat-view .conversation-top>.mascot{width:32px;height:32px}.persistent-phone .phone-chat-view .conversation-top strong{font-size:13px}
+.single-phone-site .download-scene{display:block;padding:0;text-align:left}.single-phone-site .download-content{display:flex;align-items:flex-start;justify-content:center;padding:0;max-width:500px}
+.single-phone-site .download-content .summit-mascot{width:95px;height:95px;margin-bottom:20px}.single-phone-site .download-content>.eyebrow{margin:0 0 20px}.single-phone-site .download-content h2{font-size:62px;line-height:1.24}.single-phone-site .download-content>p{font-size:17px}.single-phone-site .store-badges{justify-content:flex-start;margin-top:28px}
+.single-phone-site .site-footer{position:absolute;bottom:12px;left:max(32px,calc((100vw - 1120px)/2));width:auto;padding:0;z-index:11}.single-phone-site .site-footer>.brand,.single-phone-site .site-footer>.footer-links{display:none}.single-phone-site .footer-copyright{font-size:10px}
+.single-phone-site .scene-dots{z-index:11}
+@media(min-width:901px) and (max-height:800px){.single-phone-site .persistent-phone .device{--device-width:280px}.phone-lock-view{padding-top:42px}}
+@media(max-width:1100px) and (min-width:901px){.persistent-phone{right:25px;width:43vw}.single-phone-site .scene-copy h1,.single-phone-site .scene-copy h2{font-size:40px}}
+@media(max-width:900px){
+ .single-phone-site .scene-inner{display:block;padding:94px 0 0;min-height:100svh;width:calc(100% - 32px)}
+ .single-phone-site .scene-copy{max-width:600px;margin-inline:auto;text-align:center}.single-phone-site .scene-copy .eyebrow{display:none}.single-phone-site .scene-copy h1,.single-phone-site .scene-copy h2{font-size:29px;line-height:1.24}.single-phone-site .scene-copy>p{font-size:12px;line-height:1.6;margin-top:12px}.single-phone-site .scene-link{display:none}.single-phone-site .quiet-label{display:none}
+ .persistent-phone{right:auto;left:50%;top:auto;bottom:18px;transform:translateX(-50%);width:calc(100% - 30px);max-width:420px;padding:0 10px 6px}
+ .single-phone-site .persistent-phone .device{--device-width:clamp(205px,calc((100svh - 265px)/2.04),300px)}
+ .single-phone-site .phone-lock-view{padding-top:46px}.single-phone-site .download-content{align-items:center;max-width:100%;padding:0}.single-phone-site .download-content .summit-mascot{display:none}.single-phone-site .download-content h2{font-size:29px}.single-phone-site .download-content>p{display:none}.single-phone-site .download-content .store-badges{margin-top:15px;gap:10px}.single-phone-site .download-content .release-caption{display:block;font-size:10px;margin-top:7px}.single-phone-site .site-footer{bottom:2px;left:12px;z-index:1}.single-phone-site .footer-copyright{font-size:8px}
+}
+@media(max-width:900px) and (max-height:760px){.single-phone-site .scene-inner{padding-top:84px}.single-phone-site .scene-copy h1,.single-phone-site .scene-copy h2{font-size:25px}.single-phone-site .scene-copy>p{display:none}.single-phone-site .persistent-phone .device{--device-width:clamp(205px,calc((100svh - 200px)/2.04),270px)}.single-phone-site .download-content .store-badges{margin-top:8px}.single-phone-site .store-button img{width:118px;height:40px}.single-phone-site .google-store img{width:134px;height:52px}.single-phone-site .download-content .release-caption{display:none}}
+@media(prefers-reduced-motion:reduce){.site-atmosphere,.site-atmosphere:before{transition:none}}
+@media(max-width:900px){.single-phone-site .download-content h2{font-size:24px}.single-phone-site .download-content h2 br{display:none}}
+@media(max-width:900px) and (max-height:760px){
+ .persistent-phone .device .demo-panel{padding-inline:11px}.persistent-phone .demo-panel .phone-counter b{font-size:29px}.persistent-phone .demo-panel .phone-counter>span,.persistent-phone .demo-panel .phone-counter small{font-size:11px}
+ .persistent-phone .member-row{gap:6px;min-height:63px}.persistent-phone .member-avatar{width:30px;height:30px}.persistent-phone .member-avatar .mascot{width:28px;height:28px}.persistent-phone .member-info>strong,.persistent-phone .member-time strong{font-size:10px}.persistent-phone .member-row small,.persistent-phone .member-time span{font-size:8px}.persistent-phone .party-cover{gap:6px}.persistent-phone .party-cover>.mascot{width:35px;height:35px}.persistent-phone .party-cover strong{font-size:13px}.persistent-phone .party-summary{font-size:8px}
+}

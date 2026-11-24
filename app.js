@@ -62,6 +62,7 @@ function renderDemo(name){
   record:()=>`<div class="demo-heading"><h3>나의 기록</h3><button type="button" id="show-profile" class="icon-button" data-switch="profile" aria-label="내 프로필"><span data-icon="person" aria-hidden="true"></span></button></div><div class="demo-card"><span class="meta">이번 주 공부</span><strong class="record-total">18시간 24분</strong></div><div class="record-streak">${mascot(1)}<strong>12일째 꾸준히 공부하고 있어요</strong></div><div class="record-chart" role="img" aria-label="주간 공부 시간: 월 2시간, 화 3시간, 수 2시간 30분, 목 4시간, 금 3시간 30분, 토 3시간 24분, 일 0시간">${[50,75,62.5,100,87.5,85,0].map((h,i)=>`<div class="record-bar" style="height:${Math.max(3,h)}%"><span>${'월화수목금토일'[i]}</span></div>`).join('')}</div><table class="demo-table"><caption class="sr-only">과목별 주간 공부 시간</caption><tbody><tr><td>수학</td><td>8시간 24분</td></tr><tr><td>국어</td><td>6시간</td></tr><tr><td>영어</td><td>4시간</td></tr></tbody></table>`
  };
  panel.innerHTML=views[name]();decorate(panel);paintCounter();paintTimer();panel.scrollTop=scrollTop;
+ document.dispatchEvent(new CustomEvent('wanju:view',{detail:{name}}));
  if(name==='plan'){
   const ribbon=panel.querySelector('.demo-week'),selected=ribbon.querySelector('[aria-pressed=true]');
   ribbon.scrollLeft=Math.max(0,selected.offsetLeft-ribbon.offsetLeft-ribbon.clientWidth/2+selected.offsetWidth/2);
@@ -99,7 +100,7 @@ $('#demo-panel').addEventListener('click',e=>{
   announce(timerRunning?'집중 타이머를 시작했어요.':'타이머를 멈췄어요.');
  }
  if(b.id==='timer-reset'){timerRunning=false;timerAccumulated=0;renderDemo('focus');$('#timer-reset').focus({preventScroll:true});announce('타이머를 초기화했어요.');}
- if(b.id==='open-stickers'){$('#together').scrollIntoView({behavior:reduced.matches?'instant':'smooth'});$('#sticker-tray button').focus({preventScroll:true});}
+ if(b.id==='open-stickers')document.dispatchEvent(new CustomEvent('wanju:chat'));
 });
 function setProfileSide(value){
  profilePublic=value;
