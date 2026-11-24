@@ -8,7 +8,7 @@ if parsed.scheme != 'https' or not parsed.netloc or parsed.query or parsed.fragm
     raise SystemExit('Usage: python3 scripts/set-site-url.py https://your-confirmed-domain.example/')
 config = root / 'site-config.json'
 old = json.loads(config.read_text())['url']
-for name in ['index.html', 'privacy.html', '404.html', 'sitemap.xml', 'robots.txt']:
+for name in ['index.html', 'privacy.html', 'support.html', '404.html', 'sitemap.xml', 'robots.txt']:
     path = root / name
     path.write_text(path.read_text().replace(old, url))
 config.write_text(json.dumps({'url': url}, indent=2) + '\n')
