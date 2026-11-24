@@ -57,3 +57,7 @@ Pages source는 `main` 브랜치의 `/`입니다. `.nojekyll`로 정적 파일�
 반복 설명·개발 경계 FAQ·숫자 정지·투명도 조작 버튼·계산 설명·GitHub/운영자 진입 링크를 소개 경로에서 제거했습니다. 운영 서비스 자체는 기존 주소에서 유지합니다. 가상 데이터의 처리 범위는 개인정보 안내에 둡니다. 잠금화면도 배경·시계·진행 중 공부 카드가 보이는 휴대폰 안에 배치합니다.
 
 공식 Apple/Google 배지는 `assets/app-store.svg`와 `assets/google-play.png`에 원본으로 보관합니다. 실제 스토어 상품 주소가 확정되기 전에는 클릭 시 출시 준비 상태를 표시합니다. 없는 다운로드 링크를 연결하거나 실제로 설치됐다고 표시하지 않습니다. [Apple 배지 안내](https://developer.apple.com/app-store/marketing/guidelines/) · [Google 배지 안내](https://partnermarketinghub.withgoogle.com/brands/google-play/google-play/lockups-icons-badges/).
+
+## UX11 폰 조작과 메뉴
+
+상태바·테두리·뒷면 또는 폰 아래 회전 아이콘을 드래그하면 좌우360도/상하45도로 돌릴 수 있습니다. 아이콘을 누르거나 Home 키로 원위치, 방향키로 각도를 조절합니다. 앱 화면 내부는 원래 탭·스크롤·프로필 스와이프를 사용합니다. 측면 전원은 화면 켜기/끄기, 음량·무음 버튼은 폰 안에서만 피드백을 표시합니다. 실제 기기 설정이나 앱 데이터를 바꾸지 않습니다. 상단 메뉴는 개인정보 안내·이용/계정 안내·문의입니다.
