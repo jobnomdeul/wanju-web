@@ -5,6 +5,11 @@
  const app=phone.querySelector('.phone-app-view'),lock=phone.querySelector('.phone-lock-view'),chat=phone.querySelector('.phone-chat-view');
  const scenes=[...document.querySelectorAll('.scene')];
  const defaults=new Map(scenes.map(scene=>[scene.id,{title:scene.querySelector('h1,h2').innerHTML,description:scene.querySelector('.scene-copy>p').innerHTML}]));
+ const story=document.createElement('div');story.className='live-story scene-copy';story.setAttribute('aria-label','선택한 완주 기능');
+ story.innerHTML='<span class="eyebrow">너의 속도로, 끝까지.</span><h1></h1><p></p><div class="story-store" hidden></div>';
+ document.querySelector('main').prepend(story);
+ const store=story.querySelector('.story-store');store.append(document.querySelector('.store-badges'),document.querySelector('#release-status'));
+ for(const scene of scenes){scene.querySelector('.scene-copy').hidden=true;scene.querySelector('.scene-copy').inert=true;scene.setAttribute('aria-label',scene.querySelector('h1,h2').textContent);scene.removeAttribute('aria-labelledby');}
  const topics={
   today:{title:'남은 시간을 만나고.<br>오늘의 한 걸음부터.',description:'수능까지의 여정과 오늘 할 일.<br>지금 필요한 것부터 가볍게.',bg:'#fbf8ef',glow:'#f0ddb0'},
   plan:{title:'머릿속 계획을,<br>오늘의 한 칸으로.',description:'학교 일정과 나의 할 일을 한눈에.<br>끝낸 공부는 가볍게 체크해요.',bg:'#f1eddf',glow:'#e5d9a9'},
@@ -18,8 +23,9 @@
  let active=scenes[0],syncing=false,choice='plan';
  function caption(topic,restore=false){
   const content=topics[topic]||topics.today,original=defaults.get(active.id);
-  active.querySelector('h1,h2').innerHTML=restore?original.title:content.title;
-  active.querySelector('.scene-copy>p').innerHTML=restore?original.description:content.description;
+  story.querySelector('h1').innerHTML=restore?original.title:content.title;
+  story.querySelector('p').innerHTML=restore?original.description:content.description;
+  store.hidden=active.id!=='availability';story.classList.toggle('is-download',!store.hidden);
   document.body.style.setProperty('--scene-bg',content.bg);document.body.style.setProperty('--scene-glow',content.glow);
   document.body.dataset.topic=topic;
  }
@@ -36,11 +42,14 @@
  phone.querySelector('[data-chat-back]').addEventListener('click',()=>{select('together');phone.querySelector('[data-demo=together]').focus({preventScroll:true});});
  phone.querySelector('[data-open-focus]').addEventListener('click',()=>{select('focus');phone.querySelector('#timer-toggle').focus({preventScroll:true});});
  phone.querySelector('#demo-panel').addEventListener('click',event=>{if(event.target.closest('[data-live-counter]'))caption('today');});
- const observer=new IntersectionObserver(entries=>{
-  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
-  if(!visible.length||visible[0].target===active)return;
-  active=visible[0].target;
-  const name={intro:'today',experience:choice,lockscreen:'lock',together:'chat',availability:'today'}[active.id];select(name,true);
- },{threshold:[.5,.65]});
- scenes.forEach(scene=>observer.observe(scene));select('today',true);
+ function chooseScene(){
+  const next=scenes.reduce((best,scene)=>Math.abs(scene.getBoundingClientRect().top)<Math.abs(best.getBoundingClientRect().top)?scene:best,scenes[0]);
+  if(next===active)return;
+  active=next;
+  const name={intro:'today',experience:choice,lockscreen:'lock',together:'chat',availability:'today'}[active.id];select(name,active.id!=='experience');
+  document.querySelectorAll('.scene-dots a').forEach(link=>{if(link.hash==='#'+active.id)link.setAttribute('aria-current','true');else link.removeAttribute('aria-current');});
+ }
+ let queued=false;
+ window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(()=>{queued=false;chooseScene();});}},{passive:true});
+ select('today',true);chooseScene();
 })();

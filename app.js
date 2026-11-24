@@ -140,8 +140,6 @@ $$('[data-start-focus]').forEach(link=>link.addEventListener('click',()=>{if(!ti
 $$('[data-platform]').forEach(button=>button.addEventListener('click',()=>{$('#release-status').textContent=`${button.dataset.platform} 정식 출시를 준비하고 있어요.`;}));
 $('#copyright-year').textContent=new Date().getFullYear();decorate();renderDemo('together');paintCounter();
 const sceneElements=$$('.scene');
-const sceneObserver=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){$$('.scene-dots a').forEach(a=>{if(a.hash==='#'+entry.target.id)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});}}},{threshold:.55});
-sceneElements.forEach(scene=>sceneObserver.observe(scene));
 // Native touch/keyboard scrolling remains available. Only short desktop wheel gestures
 // outside the app's own scroll surface advance a viewport-sized scene.
 let wheelTotal=0,wheelAt=0,wheelLockedUntil=0;
